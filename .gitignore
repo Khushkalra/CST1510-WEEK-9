@@ -1,0 +1,42 @@
+# ───────── macOS System Files ─────────
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# ───────── Python ─────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments (macOS)
+venv/
+env/
+.venv/
+
+# ───────── Streamlit ─────────
+.streamlit/secrets.toml
+.streamlit/credentials.toml
+
+# ───────── PyCharm / JetBrains ─────────
+.idea/
+*.iml
+
+# ───────── Logs ─────────
+*.log
+
+# ───────── Temp / Backup files ─────────
+*.tmp
+*.bak
+
+# ───────── Database files (if any) ─────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ───────── Cache Folders (optional) ─────────
+.cache/
