@@ -5,7 +5,20 @@ def get_incidents():
     #return all cyber incidents as a DataFrame
     conn = get_connection()
     try:
-        df = pd.read_sql("SELECT * FROM cyber_incidents", conn)
+        df = pd.read_sql(
+            """
+            SELECT
+                rowid AS incident_id,
+                date_reported,
+                incident_type,
+                severity,
+                status,
+                description,
+                reported_by
+            FROM cyber_incidents
+            """,
+            conn
+        )
         return df
     finally:
         conn.close()
@@ -28,5 +41,19 @@ def add_incident(date_reported, incident_type, severity, status, description, re
     except Exception as e:
         print("Error inserting incident:", e)
         return False
-    finally:
+
+def delete_incident(incident_id: int) -> bool:
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("DELETE FROM cyber_incidents WHERE rowid = ?", (incident_id,))
+
+        conn.commit()
         conn.close()
+
+        return cursor.rowcount > 0
+
+    except Exception as e:
+        print("Error deleting incident:", e)
+        return False
