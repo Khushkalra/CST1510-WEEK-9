@@ -12,7 +12,38 @@ if "logged_in" not in st.session_state or not st.session_state.logged_in:
     st.error("You must log in first.")
     st.stop()
 
-st.title("Dashboard")
+st.markdown(
+    """
+    <div style="background: linear-gradient(90deg, #0f2027, #203a43, #2c5364;
+                 text-align: center;
+                 padding: 20px;
+                 border-radius: 10px;
+                 font-size: 40px;
+                 font-weight: bold;
+                 color: #00f0ff;
+                 text-shadow:
+                      0 0 5px #00f0ff,
+                      0 0 10px #FF3131,
+                      0 0 20px #00f0ff,
+                      0 0 40px #FF3131;
+"> D A S H B O A R D
+</div>""",
+    unsafe_allow_html=True,
+)
+st.markdown("<br>", unsafe_allow_html=True)
+
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://images.unsplash.com/photo-1604079628040-94301bb21b91");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 #fetch incidents, tickets, and datasets from your backend service
 incidents_df = get_incidents()
@@ -48,3 +79,7 @@ if "source" in datasets_df.columns and not datasets_df.empty:
 else:
     #message shown when no source column/data exists
     st.info("No dataset source data available.")
+
+st.sidebar.title("🛡️ Cyber Platform")
+st.sidebar.caption("-----------------WELCOME---------------------")
+st.sidebar.image("/Users/kk/Desktop/1.jpeg", width=350)
