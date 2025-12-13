@@ -36,7 +36,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url("https://images.unsplash.com/photo-1614064641938-3bbee52942c7");
+        background-image: url("https://images.unsplash.com/photo-1604079628040-94301bb21b91");
         background-size: cover;
         background-attachment: fixed;
     }
@@ -90,6 +90,6 @@ else:
             st.success("User registered. You can now log in.")
         else:
             st.error(message)
-st.sidebar.title("🛡️ Cyber Platform")
+st.sidebar.title("Cyber Platform")
 st.sidebar.caption("--------------------BE SAFE---------------------")
 st.sidebar.image("/Users/kk/Desktop/1.jpeg", width=350)

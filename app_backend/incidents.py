@@ -57,3 +57,46 @@ def delete_incident(incident_id: int) -> bool:
     except Exception as e:
         print("Error deleting incident:", e)
         return False
+
+def get_incident_by_id(incident_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT 
+            rowid AS incident_id,
+            date_reported,
+            incident_type,
+            severity,
+            status,
+            description,
+            reported_by
+        FROM cyber_incidents
+        WHERE rowid = ?
+    """, (incident_id,))
+
+    row = cursor.fetchone()
+    conn.close()
+
+    if not row:
+        return None
+
+    columns = ["incident_id", "date_reported", "incident_type", "severity",
+               "status", "description", "reported_by"]
+
+    return dict(zip(columns, row))
+
+
+def update_incident(incident_id, status, severity, description):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE cyber_incidents
+        SET status=?, severity=?, description=?
+        WHERE rowid=?
+    """, (status, severity, description, incident_id))
+
+    conn.commit()
+    conn.close()
+    return True
